@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.cuarentinistas.entity.Cliente;
+import utn.frd.cuarentinistas.entity.Clientes;
 import utn.frd.cuarentinistas.entity.ClienteFacade;
 
 
@@ -23,14 +23,14 @@ public class ClienteRest {
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Cliente> findAll(){
+    public List<Clientes> findAll(){
         return ejbClienteFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Cliente cliente){
+    public void create(Clientes cliente){
         ejbClienteFacade.create(cliente);
     }
     
@@ -38,7 +38,7 @@ public class ClienteRest {
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Cliente cliente){
+    public void edit(@PathParam("id")long id, Clientes cliente){
         ejbClienteFacade.edit(cliente);
     }
     
@@ -54,7 +54,7 @@ public class ClienteRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cliente findById(@PathParam("id")long id){
+    public Clientes findById(@PathParam("id")long id){
         return ejbClienteFacade.find(id);
     }
 

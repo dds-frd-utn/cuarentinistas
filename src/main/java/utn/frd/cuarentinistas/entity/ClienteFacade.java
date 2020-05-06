@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author lucio
  */
 @Stateless
-public class ClienteFacade extends AbstractFacade<Cliente> {
+public class ClienteFacade extends AbstractFacade<Clientes> {
 
     @PersistenceContext(unitName = "my_persistence_unit")
     private EntityManager em;
@@ -25,7 +25,7 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
     }
 
     public ClienteFacade() {
-        super(Cliente.class);
+        super(Clientes.class);
     }
     
 }

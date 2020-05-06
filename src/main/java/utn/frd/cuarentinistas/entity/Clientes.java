@@ -21,17 +21,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author lucio
+ * @author Franco
  */
 @Entity
 @Table(name = "clientes")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id"),
-    @NamedQuery(name = "Clientes.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Clientes.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
-public class Cliente implements Serializable {
+    @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
+    @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Clientes c WHERE c.id = :id"),
+    @NamedQuery(name = "Clientes.findByNombre", query = "SELECT c FROM Clientes c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Clientes.findByDireccion", query = "SELECT c FROM Clientes c WHERE c.direccion = :direccion")})
+public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,14 +48,14 @@ public class Cliente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
 
-    public Cliente() {
+    public Clientes() {
     }
 
-    public Cliente(Integer id) {
+    public Clientes(Integer id) {
         this.id = id;
     }
 
-    public Cliente(Integer id, String nombre) {
+    public Clientes(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -94,10 +94,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Clientes)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Clientes other = (Clientes) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +106,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.Clientes[ id=" + id + " ]";
+        return "utn.frd.cuarentinistas.entity.Clientes[ id=" + id + " ]";
     }
     
 }
