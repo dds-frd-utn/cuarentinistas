@@ -15,7 +15,7 @@ import utn.frd.cuarentinistas.entity.Clientes;
 import utn.frd.cuarentinistas.entity.ClienteFacade;
 
 
-@Path("/cliente")
+@Path("/clientes")
 public class ClienteRest {
     @EJB
     private ClienteFacade ejbClienteFacade;
