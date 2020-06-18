@@ -151,7 +151,7 @@ public class Movimientos implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.entity.Movimientos[ id=" + id + " ]";
+        return "utn.frd.cuarentinistas.entities.Movimientos[ id=" + id + " ]";
     }
     
 }
