@@ -11,35 +11,35 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.cuarentinistas.entities.Clientes;
-import utn.frd.cuarentinistas.sessions.ClientesFacade;
+import utn.frd.cuarentinistas.entities.Movimientos;
+import utn.frd.cuarentinistas.sessions.MovimientosFacade;
 
 
-@Path("/clientes")
-public class ClientesRest {
+@Path("/movimientos")
+public class MovimientosRest {
     @EJB
-    private ClientesFacade ejbClientesFacade;
+    private MovimientosFacade ejbMovimientosFacade;
 
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Clientes> findAll(){
-        return ejbClientesFacade.findAll();
+    public List<Movimientos> findAll(){
+        return ejbMovimientosFacade.findAll();
     }
 
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Clientes cliente){
-        ejbClientesFacade.create(cliente);
+    public void create(Movimientos movimiento){
+        ejbMovimientosFacade.create(movimiento);
     }
 
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Clientes cliente){
-        ejbClientesFacade.edit(cliente);
+    public void edit(@PathParam("id")long id, Movimientos movimiento){
+        ejbMovimientosFacade.edit(movimiento);
     }
 
     //eliminar entidades
@@ -47,14 +47,14 @@ public class ClientesRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")long id){
-        ejbClientesFacade.remove( ejbClientesFacade.find(id) );
+        ejbMovimientosFacade.remove( ejbMovimientosFacade.find(id) );
     }
 
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Clientes findById(@PathParam("id")long id){
-        return ejbClientesFacade.find(id);
+    public Movimientos findById(@PathParam("id")long id){
+        return ejbMovimientosFacade.find(id);
     }
 }
