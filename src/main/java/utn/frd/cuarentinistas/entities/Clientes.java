@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utn.frd.cuarentinistas.entity;
+package utn.frd.cuarentinistas.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,6 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
     @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Clientes c WHERE c.id = :id"),
     @NamedQuery(name = "Clientes.findByNombre", query = "SELECT c FROM Clientes c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Clientes.findByApellido", query = "SELECT c FROM Clientes c WHERE c.apellido = :apellido"),
+    @NamedQuery(name = "Clientes.findByDocumento", query = "SELECT c FROM Clientes c WHERE c.documento = :documento"),
+    @NamedQuery(name = "Clientes.findByFechaNac", query = "SELECT c FROM Clientes c WHERE c.fechaNac = :fechaNac"),
     @NamedQuery(name = "Clientes.findByDireccion", query = "SELECT c FROM Clientes c WHERE c.direccion = :direccion")})
 public class Clientes implements Serializable {
 
@@ -41,9 +47,23 @@ public class Clientes implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 100)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "apellido")
+    private String apellido;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "documento")
+    private int documento;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha_nac")
+    @Temporal(TemporalType.DATE)
+    private Date fechaNac;
     @Size(max = 255)
     @Column(name = "direccion")
     private String direccion;
@@ -55,9 +75,12 @@ public class Clientes implements Serializable {
         this.id = id;
     }
 
-    public Clientes(Integer id, String nombre) {
+    public Clientes(Integer id, String nombre, String apellido, int documento, Date fechaNac) {
         this.id = id;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.documento = documento;
+        this.fechaNac = fechaNac;
     }
 
     public Integer getId() {
@@ -74,6 +97,30 @@ public class Clientes implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     public String getDireccion() {

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utn.frd.cuarentinistas.entity;
+package utn.frd.cuarentinistas.entities;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author lucio
+ * @author Franco
  */
 public abstract class AbstractFacade<T> {
 

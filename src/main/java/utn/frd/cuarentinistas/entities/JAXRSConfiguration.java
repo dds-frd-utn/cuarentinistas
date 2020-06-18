@@ -1,4 +1,4 @@
-package utn.frd.cuarentinistas.entity;
+package utn.frd.cuarentinistas.entities;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

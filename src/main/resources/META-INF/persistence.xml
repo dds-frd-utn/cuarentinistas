@@ -3,6 +3,10 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit">
     <jta-data-source>jdbc/MySQLDataSource</jta-data-source>
-    <class>utn.frd.cuarentinistas.entity.Clientes</class>
+    <class>utn.frd.cuarentinistas.entities.Clientes</class>
+    <class>utn.frd.cuarentinistas.entities.Inversiones</class>
+    <class>utn.frd.cuarentinistas.entities.Movimientos</class>
+    <class>utn.frd.cuarentinistas.entities.Bonos</class>
+    <class>utn.frd.cuarentinistas.entities.Cuentas</class>
   </persistence-unit>
 </persistence>
