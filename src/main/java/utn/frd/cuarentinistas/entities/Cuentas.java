@@ -108,7 +108,7 @@ public class Cuentas implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.entity.Cuentas[ cbu=" + cbu + " ]";
+        return "utn.frd.cuarentinistas.entities.Cuentas[ cbu=" + cbu + " ]";
     }
     
 }

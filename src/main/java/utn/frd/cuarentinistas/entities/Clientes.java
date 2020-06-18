@@ -153,7 +153,7 @@ public class Clientes implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.entity.Clientes[ id=" + id + " ]";
+        return "utn.frd.cuarentinistas.entities.Clientes[ id=" + id + " ]";
     }
     
 }

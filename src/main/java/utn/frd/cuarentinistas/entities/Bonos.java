@@ -140,7 +140,7 @@ public class Bonos implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.entity.Bonos[ id=" + id + " ]";
+        return "utn.frd.cuarentinistas.entities.Bonos[ id=" + id + " ]";
     }
     
 }

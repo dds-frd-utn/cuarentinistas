@@ -138,7 +138,7 @@ public class Inversiones implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarentinistas.entity.Inversiones[ id=" + id + " ]";
+        return "utn.frd.cuarentinistas.entities.Inversiones[ id=" + id + " ]";
     }
     
 }
