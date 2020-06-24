@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Documentación</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            * {
+                margin: 0;
+                font-family: sans-serif;
+                color: #53575a;
+            }
+            ul,h2 {
+                list-style: none;
+                margin-left: 1rem;
+            }
+            h1 {
+                margin: 1rem;
+            }
+            li {
+                padding: .5rem;
+            }
+            code{
+                font-family: monospace;
+                background: #eff3f5;
+                color: #eb5656;
+                padding: 0 .25em;
+                margin: 0 .1em;
+            }
+        </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <ul>
+        <h1>Documentación</h1>
             <h2>Las llamadas REST se realizan en:</h2>
-            <li>Clientes: /cuarentinistas/rest/clientes</li>
-            <li>Cuentas: /cuarentinistas/rest/cuentas</li>
-            <li>Movimientos: /cuarentinistas/rest/movimientos</li>
-            <li>Inversiones: /cuarentinistas/rest/inversiones</li>
-            <li>Bonos: /cuarentinistas/rest/bonos</li>
+        <ul>
+            <li>Clientes: <code>localhost:8080/cuarentinistas/rest/clientes</code></li>
+            <li>Cuentas: <code>localhost:8080/cuarentinistas/rest/cuentas</code></li>
+            <li>Movimientos: <code>localhost:8080/cuarentinistas/rest/movimientos</code></li>
+            <li>Inversiones: <code>localhost:8080/cuarentinistas/rest/inversiones</code></li>
+            <li>Bonos: <code>localhost:8080/cuarentinistas/rest/bonos</code></li>
         </ul>
     </body>
 </html>
