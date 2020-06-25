@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Cuarentinistas</title>
+    <style>
+        * {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    }
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main {
+        width: 100%;
+        padding: 3em;
+    }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    button {
+        margin: .5em;
+        padding: .5em;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bolder;
+        font-size: 1em;
+        background-color: #2ebd75;
+        cursor: pointer;
+        border: none;
+    }
+    .controls {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+
+    }
+    h1 {
+        margin-bottom: 1em;
+    }
+    .content {
+        background-color: rgba(0,0,0,0.2);
+        padding: .5em;
+        text-align: center;
+    }
+    </style>
+    <script src="../js/obtenerClientes.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Bienvenido!</h1>
+        <div class="controls">
+
+            <div class="buttons">
+                <button id="clientes">Últimos movimientos</button>
+                <button>Realizar transferencia</button>
+                <button>Realizar inversión</button>
+            </div>
+
+            <div class="content">
+                <p>Contenido generado por servicio RESTFul</p>
+            </div>
+
+            <div class="buttons">
+                <button>Bonos adquiridos</button>
+                <button>Saldo actual</button>
+                <button>Resumen de cuenta</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
