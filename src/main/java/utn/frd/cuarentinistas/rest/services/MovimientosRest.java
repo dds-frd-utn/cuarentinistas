@@ -51,10 +51,25 @@ public class MovimientosRest {
     }
 
     //obtener una entidad por id
+
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Movimientos findById(@PathParam("id")long id){
+    public Movimientos findById(@PathParam("id")int id){
         return ejbMovimientosFacade.find(id);
+    }
+    
+    @GET
+    @Path("/cbuSalida/{cbuSalida}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Movimientos findByCbuSalida(@PathParam("cbuSalida")int cbuSalida){
+        return ejbMovimientosFacade.find(cbuSalida);
+    }
+    
+    @GET
+    @Path("/cbuDestino/{cbuDestino}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Movimientos findByCbuDestino(@PathParam("cbuDestino")int cbuDestino){
+        return ejbMovimientosFacade.find(cbuDestino);
     }
 }
