@@ -54,7 +54,14 @@ public class CuentasRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cuentas findById(@PathParam("id")long id){
+    public Cuentas findById(@PathParam("id")int id){
         return ejbCuentasFacade.find(id);
+    }
+
+    @GET
+    @Path("/clienteID/{clienteID}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Cuentas findByClienteID(@PathParam("clienteID")int clienteID){
+        return ejbCuentasFacade.find(clienteID);
     }
 }
