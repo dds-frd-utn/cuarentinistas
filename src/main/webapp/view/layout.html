@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cuarentinistas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  </head>
+  <body>
+    <!--Encabezado-->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Cajero
+                </h1>
+                <h2 class="subtitle">
+                    Banco Cuarentinistas de Esferópolis
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!--Formulario-->
+    <section class="section" id="formulario">
+    <form class="container" id="login">
+        <div class="field">
+            <label class="label">Usuario</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Sergio">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Contraseña</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="ContraseñaSuperSegura">
+            </div>
+        </div>
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Ingresar" id="submit"></input>
+        </div>
+    </form>
+    </section>
+    <!--Cajero-->
+    <section class="section" id="cajero">
+        <h1 class="title" id="user"></h1>
+    </section>
+    
+  </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../js/actions.js"></script>
+</html>
+
+
