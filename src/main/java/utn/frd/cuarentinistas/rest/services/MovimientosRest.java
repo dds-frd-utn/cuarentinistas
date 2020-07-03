@@ -2,6 +2,10 @@ package utn.frd.cuarentinistas.rest.services;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,6 +21,9 @@ import utn.frd.cuarentinistas.sessions.MovimientosFacade;
 
 @Path("/movimientos")
 public class MovimientosRest {
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "my_persistence_unit" );
+    EntityManager em = emfactory.createEntityManager( );
+
     @EJB
     private MovimientosFacade ejbMovimientosFacade;
 
@@ -60,16 +67,20 @@ public class MovimientosRest {
     }
     
     @GET
-    @Path("/cbuSalida/{cbuSalida}")
+    @Path("/cbuSalida/{num}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Movimientos findByCbuSalida(@PathParam("cbuSalida")int cbuSalida){
-        return ejbMovimientosFacade.find(cbuSalida);
+    public List<Movimientos> findByCbuSalida(@PathParam("num")int num){
+        TypedQuery<Movimientos> q = em.createNamedQuery("Movimientos.findByCbuSalida", Movimientos.class);
+        q.setParameter("cbuSalida", num);
+        return q.getResultList();
     }
     
     @GET
-    @Path("/cbuDestino/{cbuDestino}")
+    @Path("/cbuDestino/{num}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Movimientos findByCbuDestino(@PathParam("cbuDestino")int cbuDestino){
-        return ejbMovimientosFacade.find(cbuDestino);
+    public List<Movimientos> findByCbuDestino(@PathParam("num")int num){
+        TypedQuery<Movimientos> q = em.createNamedQuery("Movimientos.findByCbuDestino", Movimientos.class);
+        q.setParameter("cbuDestino", num);
+        return q.getResultList();
     }
 }

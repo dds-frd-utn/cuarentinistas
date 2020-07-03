@@ -2,6 +2,10 @@ package utn.frd.cuarentinistas.rest.services;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,6 +21,9 @@ import utn.frd.cuarentinistas.sessions.CuentasFacade;
 
 @Path("/cuentas")
 public class CuentasRest {
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "my_persistence_unit" );
+    EntityManager em = emfactory.createEntityManager( );
+
     @EJB
     private CuentasFacade ejbCuentasFacade;
 
@@ -59,9 +66,11 @@ public class CuentasRest {
     }
 
     @GET
-    @Path("/clienteID/{clienteID}")
+    @Path("/cliente/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cuentas findByClienteID(@PathParam("clienteID")int clienteID){
-        return ejbCuentasFacade.find(clienteID);
+    public List<Cuentas> findByClienteId(@PathParam("id")int id){
+        TypedQuery<Cuentas> q = em.createNamedQuery("Cuentas.findByClienteId", Cuentas.class);
+        q.setParameter("clienteId", id);
+        return q.getResultList();
     }
 }
