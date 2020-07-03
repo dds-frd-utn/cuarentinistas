@@ -8,6 +8,7 @@ addForm.addEventListener('submit',function(e){
 $(document).ready(function(){
     $('#submit').on('click', function(){
           $('#formulario').hide();
+		  const clienteid = 1;
           const cajero = `
           <div class="container columns">
               <aside class="menu column is-one-quarter">
@@ -16,8 +17,6 @@ $(document).ready(function(){
                   </p>
                   <ul class="menu-list">
                       <li><a id="cuentas">Mis Cuentas</a></li>
-                      <li><a id="saldo">Saldo Actual</a></li>
-                      <li><a id="movimientos">Últimos Movimientos</a></li>
                       <li><a id="inversiones">Mis Inversiones</a></li>
                   </ul>
                   <p class="menu-label">
@@ -34,6 +33,8 @@ $(document).ready(function(){
                           <tr>
                               <th>Alias</th>
                               <th>CBU</th>
+                              <th>Saldo</th>
+                              <th>Movimientos</th>
                           </tr>
                       </thead>
                       <tbody id="data-rest">
@@ -44,15 +45,18 @@ $(document).ready(function(){
           $('#cajero').append(cajero);
           $('#cuentas').on('click', function () {
                $.ajax({
-                    url: '/cuarentinistas/rest/cuentas'
+                    url: '/cuarentinistas/rest/cuentas/cliente/'+clienteid
                 }).done(function(data){
                     $("#data-rest").text('');
                     $.each(data, function(i, item) {
-                        $("#data-rest").append('<tr id="item'+i+'""></tr>')
+                        $("#data-rest").append('<tr id="item'+i+'""></tr>');
                         $("#item"+i).append("<td>"+item['alias']+"</td>");
                         $("#item"+i).append("<td>"+item['cbu']+"</td>");
+                        $("#item"+i).append("<td>"+consultarSaldo(item['cbu'])+"</td>");
+						$("#item"+i).append("<td><button>Ver</button></td>");
                     });
                 });
             });
+
     });
 });
