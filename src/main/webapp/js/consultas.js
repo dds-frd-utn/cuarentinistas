@@ -60,37 +60,36 @@ function verMovimientos(cbu) {
 		};
 	};
 
+	// Funcion para ordenar por fecha ascendente
 	function byDate(a, b) {
-		var a = new Date(a.fecha);
-		var b = new Date(b.fecha);
+		// Obtengo las fechas parseadas anteriormente para convertirlas
+		// a formato YYYYMMDD y asi poder compararlas
+		var fechaA = dateFrom(a.fecha);
+		var fechaB = dateFrom(b.fecha);
 
-		yearA = a.getFullYear();
-		if (a.getMonth() < 10) {
-			monthA = '0'+(a.getMonth()+1);
-		} else {
-			monthA = (a.getMonth()+1);
-		};
-		if (a.getDate() < 10) {
-			dateA = '0'+a.getDate();
-		} else {
-			dateA = a.getDate();
-		};
-		fechaA = yearA+monthA+dateA;
-		console.log(fechaA);
-		yearB = b.getFullYear();
-		if (b.getMonth() < 10) {
-			monthB = '0'+(b.getMonth()+1);
-		} else {
-			monthB = (b.getMonth()+1);
-		};
-		if (b.getDate() < 10) {
-			dateB = '0'+b.getDate();
-		} else {
-			dateB = b.getDate();
-		};
-		fechaB = yearB+monthB+dateB;
+		// console.log(fechaA);
+		// console.log(fechaB);
+		// console.log("comparison a<b", fechaA < fechaB);
 
-		return parseInt(fechaB) > parseInt(fechaA);
+		// No se por que esto funciona, pero (fechaA < fechaB) no
+		// no deberia ser lo mismo?
+		return -(fechaA > fechaB);
+
+		function dateFrom(input) {
+			input = new Date(input);
+			year = input.getFullYear();
+			if (input.getMonth() < 10) {
+				month = '0'+(input.getMonth()+1);
+			} else {
+				month = (input.getMonth()+1);
+			};
+			if (input.getDate() < 10) {
+				date = '0'+input.getDate();
+			} else {
+				date = input.getDate();
+			};
+			return year+month+date;
+		};
 	};
 
 	var movimientos;
@@ -120,7 +119,9 @@ function verMovimientos(cbu) {
 	});
 
 	// Ordeno movimientos por fecha (mas reciente primero)
+	console.log("antes",movimientos);
 	movimientos = movimientos.sort(byDate);
+	console.log("despues",movimientos);
 	// console.log("sorting done!", movimientos);
 
 	$.ajax({
