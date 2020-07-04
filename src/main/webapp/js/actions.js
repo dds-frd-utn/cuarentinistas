@@ -71,7 +71,7 @@ function mostrarCuentas() {
                         $("#item"+i).append("<td>"+item['alias']+"</td>");
                         $("#item"+i).append("<td>"+item['cbu']+"</td>");
                         $("#item"+i).append("<td>"+consultarBalance(item['cbu'])+"</td>");
-						$("#item"+i).append("<td><button class='button is-primary is-fullwidth' onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
+						$("#item"+i).append("<td><button class='button is-primary is-fullwidth is-small' onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
                     });
                 });
             };
