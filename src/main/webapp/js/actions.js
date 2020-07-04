@@ -27,14 +27,16 @@ $(document).ready(function(){
                       <li><a>Realizar Inversión</a></li>
                   </ul>
               </aside>
+
               <div class="column">
+				  <div id="container-header" class="container">
+					  <h3 class="subtitle">
+						  Por favor seleccione una opción del menu a la izquierda para continuar
+					  </h3>
+				  </div>
                   <table class="table is-striped is-fullwidth">
                       <thead>
-                          <tr>
-                              <th>Alias</th>
-                              <th>CBU</th>
-                              <th>Saldo</th>
-                              <th>Movimientos</th>
+                          <tr id="data-headers">
                           </tr>
                       </thead>
                       <tbody id="data-rest">
@@ -43,17 +45,29 @@ $(document).ready(function(){
               </div>
           </div>`;
           $('#cajero').append(cajero);
+
           $('#cuentas').on('click', function () {
                $.ajax({
                     url: '/cuarentinistas/rest/cuentas/cliente/'+clienteid
                 }).done(function(data){
+
+					$('#container-header').text('');
+					$('#container-header').append('<h2 class="title" style="margin-bottom: 1rem;">Mis Cuentas</h2>');
+
+					$('#data-headers').text('');
+					$('#data-headers').append("<th>Alias</th>");
+					$('#data-headers').append("<th>CBU</th>");
+					$('#data-headers').append("<th>Balance</th>");
+					$('#data-headers').append("<th>Movimientos</th>");
+
                     $("#data-rest").text('');
                     $.each(data, function(i, item) {
-                        $("#data-rest").append('<tr id="item'+i+'""></tr>');
+                        $("#data-rest").append('<tr id="item'+i+'"></tr>');
+
                         $("#item"+i).append("<td>"+item['alias']+"</td>");
                         $("#item"+i).append("<td>"+item['cbu']+"</td>");
-                        $("#item"+i).append("<td>"+consultarSaldo(item['cbu'])+"</td>");
-						$("#item"+i).append("<td><button>Ver</button></td>");
+                        $("#item"+i).append("<td>"+consultarBalance(item['cbu'])+"</td>");
+						$("#item"+i).append("<td><button onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
                     });
                 });
             });
