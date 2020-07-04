@@ -4,11 +4,10 @@ addForm.addEventListener('submit',function(e){
   const value = addForm.querySelector('input[type="text"]').value;
   document.getElementById("user").innerHTML = "Bienvenido, " + value;
 });
-
+const clienteid = 1;
 $(document).ready(function(){
     $('#submit').on('click', function(){
           $('#formulario').hide();
-		  const clienteid = 1;
           const cajero = `
           <div class="container columns">
               <aside class="menu column is-one-quarter">
@@ -16,7 +15,7 @@ $(document).ready(function(){
                       Consultas
                   </p>
                   <ul class="menu-list">
-                      <li><a id="cuentas">Mis Cuentas</a></li>
+                      <li><a id="cuentas" onclick="mostrarCuentas();">Mis Cuentas</a></li>
                       <li><a id="inversiones">Mis Inversiones</a></li>
                   </ul>
                   <p class="menu-label">
@@ -31,7 +30,7 @@ $(document).ready(function(){
               <div class="column">
 				  <div id="container-header" class="container">
 					  <h3 class="subtitle">
-						  Por favor seleccione una opción del menu a la izquierda para continuar
+						  Por favor seleccione una opción del menu a la izquierda para continuar.
 					  </h3>
 				  </div>
                   <table class="table is-striped is-fullwidth">
@@ -46,13 +45,18 @@ $(document).ready(function(){
           </div>`;
           $('#cajero').append(cajero);
 
-          $('#cuentas').on('click', function () {
+          //$('#cuentas').on('click', mostrarCuentas());
+
+    });
+});
+
+function mostrarCuentas() {
                $.ajax({
                     url: '/cuarentinistas/rest/cuentas/cliente/'+clienteid
                 }).done(function(data){
 
 					$('#container-header').text('');
-					$('#container-header').append('<h2 class="title" style="margin-bottom: 1rem;">Mis Cuentas</h2>');
+					$('#container-header').append('<h2 class="title is-4" style="margin-bottom: 1rem;">Mis Cuentas</h2>');
 
 					$('#data-headers').text('');
 					$('#data-headers').append("<th>Alias</th>");
@@ -67,10 +71,7 @@ $(document).ready(function(){
                         $("#item"+i).append("<td>"+item['alias']+"</td>");
                         $("#item"+i).append("<td>"+item['cbu']+"</td>");
                         $("#item"+i).append("<td>"+consultarBalance(item['cbu'])+"</td>");
-						$("#item"+i).append("<td><button onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
+						$("#item"+i).append("<td><button class='button is-primary is-fullwidth' onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
                     });
                 });
-            });
-
-    });
-});
+            };

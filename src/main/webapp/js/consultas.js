@@ -132,9 +132,9 @@ function verMovimientos(cbu) {
 	});
 
 	$('#container-header').text('');
-	$('#container-header').append('<h2 class="title" style="margin-bottom: 1.7rem;">Ultimos movimientos</h2>');
-	$('#container-header').append('<h3 class="subtitle" style="margin-bottom: 0;">Alias: '+alias+'</h3>');
-	$('#container-header').append('<h3 class="subtitle" style="margin-bottom: 1rem;">CBU: '+cbu+'</h3>');
+	$('#container-header').append('<div class="level mb-0"><div class="level-left"><h2 class="title is-4">Últimos Movimientos</h2></div><div class="level-right"><button onclick="mostrarCuentas();" class="button"><span class="icon is-small"><i class="fa fa-long-arrow-left"></i></span></button></div></div>');
+	$('#container-header').append('<h3 class="subtitle mb-0">Alias: '+alias+'</h3>');
+	$('#container-header').append('<h3 class="subtitle mb-2">CBU: '+cbu+'</h3>');
 
 	// Preparo los headers de la tabla
 	$('#data-headers').text('');
