@@ -32,33 +32,77 @@ function consultarBalance(cbu) {
 	return balance;
 };
 
-function verMovimientos(cbu) {
+// Recibe un elemento que tenga una propiedad 'fecha'
+// Entrega el mismo elemento con la fecha formateada
+// En caso de ya estar formateado, lo devuelve intacto
+function formatElementDate(element) {
+	element['fecha'] = formatDate(element['fecha']);
+	return element;
+};
 
-	function printDate(fecha) {
-		var date = new Date(fecha);
-		var day = date.getDate();
-		var month = date.getMonth() + 1;
-		var year = date.getFullYear();
+// Recibe una fecha como string, si no tiene el formato correcto lo corrige
+// de otra manera no hace nada
+function formatDate(fecha) {
+	// Safeguard por si intentan formatear un fecha ya formateada
+	if ((fecha.charAt(fecha.length-1)) != ']') {
+		return fecha;
+	} else {
+		return fecha.substring(0, 20);
+	}
+}
 
+// Aplica formatElementDate sobre todo un array automáticamente
+// Recibe un array y devuelve el mismo array convertido
+// Asegurate que los elementos del array tengan una propiedad 'fecha'!
+function formatDateArray(array) {
+	$.each(array, function(i, item) {
+		item = formatElementDate(item);
+	});
 
-		if (month < 10) {
+	return array;
+};
 
-			if (day < 10) {
-				return "0"+day+"-0"+month+"-"+year;
-			} else {
-				return day+"-0"+month+"-"+year;
-			}
+// Funcion que recibe la fecha de un objeto
+// Devuelve string con la fecha en formato DD-MM-YYYY
+function printDate(fecha) {
+	fecha = formatDate(fecha);
+	var date = new Date(fecha);
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
 
+	// Retorno de fecha formateada agregando ceros segun sea necesario
+	if (month < 10) {
+		// Mes necesita agregar 0 a la izquierda
+		if (day < 10) {
+			// Dia necesita un 0 a la izquierda
+			return "0"+day+"-0"+month+"-"+year;
 		} else {
-
-			if (day < 10) {
-				return "0"+day+"-"+month+"-"+year;
-			} else {
-				return day+"-"+month+"-"+year;
-			}
-
-		};
+			// Dia no necesita agregar nada
+			return day+"-0"+month+"-"+year;
+		}
+	} else {
+		// Mes NO necesita agregar nada
+		if (day < 10) {
+			// Dia necesita un 0 a la izquierda
+			return "0"+day+"-"+month+"-"+year;
+		} else {
+			// Dia no necesita agregar nada
+			return day+"-"+month+"-"+year;
+		}
 	};
+};
+
+// Recibe un array de elementos que posean una propiedad 'fecha'
+// y lo devuelve ordenado con los mas recientes primero
+function sortByDate(array) {
+
+	// Formateo la fecha de cada elemento para poder trabajarla
+	// (problema de la base de datos)
+	array = formatDateArray(array);
+
+	// Ordeno movimientos por fecha (mas reciente primero)
+	return array = array.sort(byDate);
 
 	// Funcion para ordenar por fecha ascendente
 	function byDate(a, b) {
@@ -73,7 +117,7 @@ function verMovimientos(cbu) {
 
 		// No se por que esto funciona, pero (fechaA < fechaB) no
 		// no deberia ser lo mismo?
-		return -(fechaA > fechaB);
+		return -(fechaA >= fechaB);
 
 		function dateFrom(input) {
 			input = new Date(input);
@@ -91,39 +135,36 @@ function verMovimientos(cbu) {
 			return year+month+date;
 		};
 	};
+}
 
+function verMovimientos(cbu) {
 	var movimientos;
 	var alias;
 
+	// Busco los movimientos de salida de la cuenta
 	$.ajax({
 		url: '/cuarentinistas/rest/movimientos/cbuSalida/'+cbu,
 		async: false
 	}).done(function(salidas) {
 		movimientos = salidas;
-		console.log("salidas",salidas);
+		// console.log("salidas",salidas);
 	});
 
+	// Agrego los movimientos de entrada
+	// para asi tener todos los movimientos de la cuenta
 	$.ajax({
 		url: '/cuarentinistas/rest/movimientos/cbuDestino/'+cbu,
 		async: false
 	}).done(function(entradas) {
 		movimientos = movimientos.concat(entradas);
-		console.log("entradas",entradas);
+		// console.log("entradas",entradas);
 	});
 
-	// console.log("movimientos",movimientos);
-
-	// Formateo fecha para poder trabajarla (problema de la base de datos)
-	$.each(movimientos, function(i, item) {
-		movimientos[i]['fecha'] = movimientos[i]['fecha'].substring(0, 20);
-	});
-
-	// Ordeno movimientos por fecha (mas reciente primero)
-	console.log("antes",movimientos);
-	movimientos = movimientos.sort(byDate);
-	console.log("despues",movimientos);
+	// console.log("movimientos b4 sorting",movimientos);
+	movimientos = sortByDate(movimientos);
 	// console.log("sorting done!", movimientos);
 
+	// Busco el alias de la cuenta
 	$.ajax({
 		url: '/cuarentinistas/rest/cuentas/'+cbu,
 		async: false
@@ -131,10 +172,11 @@ function verMovimientos(cbu) {
 		alias = cuenta['alias'];
 	});
 
+	// Encabezado de seccion Ultimos movimientos
 	$('#container-header').text('');
 	$('#container-header').append('<div class="level mb-0"><div class="level-left"><h2 class="title is-4">Últimos Movimientos</h2></div><div class="level-right"><button onclick="mostrarCuentas();" class="button"><span class="icon is-small"><i class="fa fa-long-arrow-left"></i></span></button></div></div>');
-	$('#container-header').append('<h3 class="subtitle mb-0">Alias: '+alias+'</h3>');
-	$('#container-header').append('<h3 class="subtitle mb-2">CBU: '+cbu+'</h3>');
+	$('#container-header').append('<h3 class="subtitle mb-0" style="font-size: 1.11rem;">Alias: '+alias+'</h3>');
+	$('#container-header').append('<h3 class="subtitle mb-2" style="font-size: 1.11rem;">CBU: '+cbu+'</h3>');
 
 	// Preparo los headers de la tabla
 	$('#data-headers').text('');
