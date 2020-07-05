@@ -175,8 +175,8 @@ function verMovimientos(cbu) {
 	// Encabezado de seccion Ultimos movimientos
 	$('#container-header').text('');
 	$('#container-header').append('<div class="level mb-0"><div class="level-left"><h2 class="title is-4">Últimos Movimientos</h2></div><div class="level-right"><button onclick="mostrarCuentas();" class="button"><span class="icon is-small"><i class="fa fa-long-arrow-left"></i></span></button></div></div>');
-	$('#container-header').append('<h3 class="subtitle mb-0" style="font-size: 1.11rem;">Alias: '+alias+'</h3>');
-	$('#container-header').append('<h3 class="subtitle mb-2" style="font-size: 1.11rem;">CBU: '+cbu+'</h3>');
+	$('#container-header').append('<h3 class="subtitle header-info mb-0">Alias: '+alias+'</h3>');
+	$('#container-header').append('<h3 class="subtitle header-info mb-2">CBU: '+cbu+'</h3>');
 
 	// Preparo los headers de la tabla
 	$('#data-headers').text('');
@@ -194,14 +194,14 @@ function verMovimientos(cbu) {
 		// Determino si el movimiento es de salida o entrada
 		// y seteo parametros para la impresion
 		if (movimiento['cbuSalida'] == cbu) {
-			var color = "#ffe5e5";
+			var vclass = "is-red";
 			var importe = "-"+movimiento['importe'];
 		} else {
-			var color = "#e5ffe7"
+			var vclass = "is-green";
 			var importe = movimiento['importe'];
 		};
 
-		$("#data-rest").append('<tr id="item'+i+'" style="background-color: '+color+';"></tr>');
+		$("#data-rest").append('<tr id="item'+i+'" class="'+vclass+'"></tr>');
 
 		$("#item"+i).append("<td>"+printDate(movimiento['fecha'])+"</td>");
 		$("#item"+i).append("<td>"+movimiento['cbuSalida']+"</td>");
