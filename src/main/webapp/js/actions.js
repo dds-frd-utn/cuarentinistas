@@ -1,3 +1,5 @@
+// import * from "transacciones";
+
 const addForm = document.forms['login'];
 addForm.addEventListener('submit',function(e){
   e.preventDefault();
@@ -22,12 +24,12 @@ $(document).ready(function(){
                       Transacciones
                   </p>
                   <ul class="menu-list">
-                      <li><a>Realizar Transferencia</a></li>
+                      <li><a id="transacciones" onclick="realizarTransferencia()">Realizar Transferencia</a></li>
                       <li><a>Realizar Inversión</a></li>
                   </ul>
               </aside>
 
-              <div class="column">
+              <div class="column" id="columna-derecha">
 				  <div id="container-header" class="container">
 					  <h3 class="subtitle">
 						  Por favor seleccione una opción del menu a la izquierda para continuar.
