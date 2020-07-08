@@ -24,7 +24,7 @@ $(document).ready(function(){
                       Transacciones
                   </p>
                   <ul class="menu-list">
-                      <li><a id="transacciones" onclick="realizarTransferencia()">Realizar Transferencia</a></li>
+                      <li><a id="transacciones" onclick="realizarTransferencia();">Realizar Transferencia</a></li>
                       <li><a>Realizar Inversión</a></li>
                   </ul>
               </aside>

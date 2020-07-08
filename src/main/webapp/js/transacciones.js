@@ -14,30 +14,41 @@ function  realizarTransferencia() {
 
 	$('#columna-derecha').text('');
 	const form = `
-	<form name ="transaccion" id="transaccion">
-		<select name="cbu_salida" id="cuenta">
+	<form class="container" name="transaccion" id="transaccion">
+                <div class="field">
+                <label class="label" for="cbu_salida">Cuenta Propia</label>
+		<div class="control">
+                <div class="select is-primary">
+                <select name="cbu_salida" id="cuenta">
 			`+opciones+`
-		</select>
-		<input type="number" name="cbu_destino" id="cbu_destino"></input>
-		<input type="text" name="descripcion" id="descripcion"></input>
-		<input type="number" name="importe" id="importe"></input>
-		<input type="submit" value="Enviar"></input>
+		</select></div></div></div>
+                <div class="field">
+                <label class="label" for="cbu_destino">Cuenta Destino</label>
+		<div class="control"><input class="input" type="number" name="cbu_destino" id="cbu_destino"></input></div>
+                </div>
+            <div class="field">
+            <label class="label" for="descripcion">Descripcion</label>
+		<div class="control"><input class="input" type="text" name="descripcion" id="descripcion" value="Lorem ipsum"></input></div>
+                </div>
+            <div class="field">
+            <label class="label" for="importe">Importe</label>
+		<div class="control"><input class="input" type="number" name="importe" id="importe"></input></div>
+		</div>
+            <div class="control"><input class="button is-primary" type="submit" value="Enviar"></input></div>
 	</form>
 	`;
 
 	$('#columna-derecha').append(form);
+        const transactionForm = document.forms['transaccion'];
+        transactionForm.addEventListener('submit',function(e){
+            e.preventDefault();
+            cbuSalida = transactionForm.querySelector('select[name="cbu_salida"]').value;
+            cbuDestino = transactionForm.querySelector('input[name="cbu_destino"]').value;
+            descripcion = transactionForm.querySelector('input[name="descripcion"]').value;
+            importe = transactionForm.querySelector('input[name="importe"]').value;
+            formValues = {cbuSalida,cbuDestino,descripcion,importe};
+            json = JSON.stringify(formValues);
+            console.log(json);
+        });
+    
 };
-
-// const pepito = document.forms['transaccion'];
-
-// pepito.addEventListener('submit',function(e){
-//   e.preventDefault();
-//   const descripcion = pepito.querySelector('input[name="cbu_salida"]').value;
-//   const cbu_destino = pepito.querySelector('input[name="cbu_destino"]').value;
-//   const descripcion = pepito.querySelector('input[name="descripcion"]').value;
-//   const importe = pepito.querySelector('input[name="importe"]').value;
-//
-//   console.log(descripcion, cbu_destino, descripcion, importe);
-//
-//   // document.getElementById("user").value
-// });
