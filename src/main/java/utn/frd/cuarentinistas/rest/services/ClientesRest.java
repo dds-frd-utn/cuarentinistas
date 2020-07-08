@@ -38,7 +38,7 @@ public class ClientesRest {
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")long id, Clientes cliente){
+    public void edit(@PathParam("id")int id, Clientes cliente){
         ejbClientesFacade.edit(cliente);
     }
 
@@ -46,7 +46,7 @@ public class ClientesRest {
     @DELETE
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
-    public void remove(@PathParam("id")long id){
+    public void remove(@PathParam("id")int id){
         ejbClientesFacade.remove( ejbClientesFacade.find(id) );
     }
 
@@ -54,7 +54,7 @@ public class ClientesRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Clientes findById(@PathParam("id")long id){
+    public Clientes findById(@PathParam("id")int id){
         return ejbClientesFacade.find(id);
     }
 }

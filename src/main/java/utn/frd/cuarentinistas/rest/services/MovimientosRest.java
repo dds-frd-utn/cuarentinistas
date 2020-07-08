@@ -67,20 +67,20 @@ public class MovimientosRest {
     }
     
     @GET
-    @Path("/cbuSalida/{num}")
+    @Path("/cbuSalida/{cbu}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Movimientos> findByCbuSalida(@PathParam("num")int num){
+    public List<Movimientos> findByCbuSalida(@PathParam("cbu")int cbu){
         TypedQuery<Movimientos> q = em.createNamedQuery("Movimientos.findByCbuSalida", Movimientos.class);
-        q.setParameter("cbuSalida", num);
+        q.setParameter("cbuSalida", cbu);
         return q.getResultList();
     }
     
     @GET
-    @Path("/cbuDestino/{num}")
+    @Path("/cbuDestino/{cbu}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Movimientos> findByCbuDestino(@PathParam("num")int num){
+    public List<Movimientos> findByCbuDestino(@PathParam("cbu")int cbu){
         TypedQuery<Movimientos> q = em.createNamedQuery("Movimientos.findByCbuDestino", Movimientos.class);
-        q.setParameter("cbuDestino", num);
+        q.setParameter("cbuDestino", cbu);
         return q.getResultList();
     }
 }
