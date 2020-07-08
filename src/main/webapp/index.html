@@ -9,16 +9,19 @@
                 font-family: sans-serif;
                 color: #53575a;
             }
-            ul,h2 {
+            ul,h2,p {
                 list-style: none;
                 margin-left: 1rem;
             }
-			h2 {
+			ul,p {
 				margin-bottom: 1rem;
 			}
             h1 {
                 margin: 1rem;
             }
+            /* h2 {
+                margin-bottom: 0rem;
+            } */
             li {
                 padding: .5rem;
             }
@@ -28,21 +31,36 @@
                 color: #eb5656;
                 padding: 0 .25em;
                 margin: 0 .1em;
+				cursor: pointer;
             }
+			.grey {
+				color: #c7c7c7;
+			}
         </style>
+		<script>
+			function copyToClipboard(element) {
+				var $temp = $("<input>");
+				$("body").append($temp);
+				$temp.val($(element).text()).select();
+				document.execCommand("copy");
+				$temp.remove();
+			}
+		</script>
     </head>
     <body>
         <h1>Documentación Cuarentinistas</h1>
         <h2>Las llamadas REST se realizan en:</h2>
+		<p class="grey">Click en el link para copiar al portapapeles</p>
         <ul>
-            <li>Clientes: <code>localhost:8080/cuarentinistas/rest/clientes</code></li>
-            <li>Cuentas: <code>localhost:8080/cuarentinistas/rest/cuentas</code></li>
-            <li>Cuentas de clienteid: <code>localhost:8080/cuarentinistas/rest/cuentas/cliente/</code></li>
-            <li>Movimientos: <code>localhost:8080/cuarentinistas/rest/movimientos</code></li>
-            <li>Movimientos by cbuSalida: <code>localhost:8080/cuarentinistas/rest/movimientos/cbuSalida/</code></li>
-            <li>Movimientos by cbuDestino: <code>localhost:8080/cuarentinistas/rest/movimientos/cbuDestino/</code></li>
-            <li>Inversiones: <code>localhost:8080/cuarentinistas/rest/inversiones</code></li>
-            <li>Bonos: <code>localhost:8080/cuarentinistas/rest/bonos</code></li>
+            <li>Clientes: <code id="link1" onclick="copyToClipboard('#link1')">localhost:8080/cuarentinistas/rest/clientes</code></li>
+            <li>Cuentas: <code id="link2" onclick="copyToClipboard('#link2')">localhost:8080/cuarentinistas/rest/cuentas</code></li>
+            <li>Cuentas de clienteid: <code id="link3" onclick="copyToClipboard('#link3')">localhost:8080/cuarentinistas/rest/cuentas/cliente/</code></li>
+            <li>Movimientos: <code id="link4" onclick="copyToClipboard('#link4')">localhost:8080/cuarentinistas/rest/movimientos</code></li>
+            <li>Movimientos by cbuSalida: <code id="link5" onclick="copyToClipboard('#link5')">localhost:8080/cuarentinistas/rest/movimientos/cbuSalida/</code></li>
+            <li>Movimientos by cbuDestino: <code id="link6" onclick="copyToClipboard('#link6')">localhost:8080/cuarentinistas/rest/movimientos/cbuDestino/</code></li>
+            <li>Inversiones: <code id="link7" onclick="copyToClipboard('#link7')">localhost:8080/cuarentinistas/rest/inversiones</code></li>
+            <li>Bonos: <code id="link8" onclick="copyToClipboard('#link8')">localhost:8080/cuarentinistas/rest/bonos</code></li>
         </ul>
     </body>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </html>
