@@ -30,12 +30,12 @@ $(document).ready(function(){
               </aside>
 
               <div class="column" id="columna-derecha">
-				  <div id="container-header" class="container">
-					  <h3 class="subtitle">
+				  <div id="container-header" class="container mb-3">
+					  <p class="subtitle">
 						  Por favor seleccione una opción del menu a la izquierda para continuar.
-					  </h3>
+					  </p>
 				  </div>
-                  <table class="table is-striped is-fullwidth">
+                  <table id='tabla' class="table is-striped is-fullwidth">
                       <thead>
                           <tr id="data-headers">
                           </tr>
@@ -43,6 +43,7 @@ $(document).ready(function(){
                       <tbody id="data-rest">
                       </tbody>
                   </table>
+				  <div id="transaction-container"></div>
               </div>
           </div>`;
           $('#cajero').append(cajero);
@@ -56,9 +57,11 @@ function mostrarCuentas() {
                $.ajax({
                     url: '/cuarentinistas/rest/cuentas/cliente/'+clienteid
                 }).done(function(data){
+					$('#transaction-container').hide();
+					$('#tabla').show();
 
 					$('#container-header').text('');
-					$('#container-header').append('<h2 class="title is-4" style="margin-bottom: 1rem;">Mis Cuentas</h2>');
+					$('#container-header').append('<h2 class="title is-4">Mis Cuentas</h2>');
 
 					$('#data-headers').text('');
 					$('#data-headers').append("<th>Alias</th>");

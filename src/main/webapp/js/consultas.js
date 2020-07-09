@@ -174,9 +174,14 @@ function verMovimientos(cbu) {
 
 	// Encabezado de seccion Ultimos movimientos
 	$('#container-header').text('');
-	$('#container-header').append('<div class="level mb-0"><div class="level-left"><h2 class="title is-4">Últimos Movimientos</h2></div><div class="level-right"><button onclick="mostrarCuentas();" class="button"><span class="icon is-small"><i class="fa fa-long-arrow-left"></i></span></button></div></div>');
-	$('#container-header').append('<h3 class="subtitle header-info mb-0">Alias: '+alias+'</h3>');
-	$('#container-header').append('<h3 class="subtitle header-info mb-2">CBU: '+cbu+'</h3>');
+	$('#container-header').append('<div class="level mb-0"><div class="level-left"><p class="title is-4">Ultimos Movimientos</p></div><div class="level-right"><button onclick="mostrarCuentas();" class="button is-small"><span class="icon is-small"><i class="fa fa-long-arrow-left"></i></span></button></div></div>');
+	$('#container-header').append('<p class="subtitle header-info my-2">Alias: '+alias+'</p>');
+	$('#container-header').append('<p class="subtitle header-info">CBU: '+cbu+'</p>');
+
+
+	// Preparo los contenedores
+	$('#transaction-container').hide();
+	$('#tabla').show();
 
 	// Preparo los headers de la tabla
 	$('#data-headers').text('');
