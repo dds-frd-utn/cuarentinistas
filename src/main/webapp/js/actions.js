@@ -18,14 +18,14 @@ $(document).ready(function(){
                   </p>
                   <ul class="menu-list">
                       <li><a id="cuentas" onclick="mostrarCuentas();">Mis Cuentas</a></li>
-                      <li><a id="inversiones">Mis Inversiones</a></li>
+                      <li><a>Mis Inversiones</a></li>
                   </ul>
                   <p class="menu-label">
                       Transacciones
                   </p>
                   <ul class="menu-list">
                       <li><a id="transacciones" onclick="realizarTransferencia();">Realizar Transferencia</a></li>
-                      <li><a>Realizar Inversión</a></li>
+                      <li><a id="inversiones" onclick="realizarInversion();">Realizar Inversión</a></li>
                   </ul>
               </aside>
 

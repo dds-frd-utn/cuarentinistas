@@ -54,7 +54,7 @@ public class BonosRest {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Bonos findById(@PathParam("id")long id){
+    public Bonos findById(@PathParam("id")int id){
         return ejbBonosFacade.find(id);
     }
 }
