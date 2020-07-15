@@ -33,7 +33,7 @@ function realizarInversion() {
         async: false
     }).done(function (cuentas) {
         $.each(cuentas, function(i, cuenta) {
-            opciones_cuentas = opciones_cuentas+'<option value='+cuenta["cbu"]+'>'+cuenta["alias"]+'</option>';
+            opciones_cuentas = opciones_cuentas+'<option value='+cuenta["cbu"]+'>'+cuenta["alias"]+ ' ('+cuenta["cbu"]+')</option>';
         });
     });
     const form = `
