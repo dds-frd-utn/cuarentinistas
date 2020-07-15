@@ -2,6 +2,10 @@ package utn.frd.cuarentinistas.rest.services;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,11 +16,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import utn.frd.cuarentinistas.entities.Inversiones;
+import utn.frd.cuarentinistas.entities.Movimientos;
 import utn.frd.cuarentinistas.sessions.InversionesFacade;
 
 
 @Path("/inversiones")
 public class InversionesRest {
+
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "my_persistence_unit" );
+    EntityManager em = emfactory.createEntityManager( );
     @EJB
     private InversionesFacade ejbInversionesFacade;
 
@@ -50,11 +58,12 @@ public class InversionesRest {
         ejbInversionesFacade.remove( ejbInversionesFacade.find(id) );
     }
 
-    //obtener una entidad por id
     @GET
-    @Path("/{id}")
+    @Path("/cuenta/{inversionistaCbu}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Inversiones findById(@PathParam("id")long id){
-        return ejbInversionesFacade.find(id);
+    public List<Inversiones> findByInversionistaCbu(@PathParam("inversionistaCbu")int cbu){
+        TypedQuery<Inversiones> q = em.createNamedQuery("Inversiones.findByInversionistaCbu", Inversiones.class);
+        q.setParameter("inversionistaCbu", cbu);
+        return q.getResultList();
     }
 }
