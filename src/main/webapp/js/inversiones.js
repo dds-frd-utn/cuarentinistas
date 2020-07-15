@@ -79,7 +79,8 @@ function realizarInversion() {
         bonoId = transactionForm.querySelector('select[name="bonoId"]').value;
         inversionistaCbu = transactionForm.querySelector('select[name="inversionistaCbu"]').value;
         cantidad = transactionForm.querySelector('input[name="cantidad"]').value;
-		fecha = new Date();
+        fecha = new Date();
+        fecha = fecha.toISOString().split('.')[0] + "Z";
 		// A la base de datos del ort* no le gusta que no le manden un // IDEA:
 		// y si le mandas uno se lo pasa por el cul*
 		// asi que le mandamos este id para que nos acepte el request :)
@@ -134,6 +135,22 @@ function realizarInversion() {
                     `;
                     $('#mensaje').html(mensaje);
                     // alert("Hey, success. ", status);
+
+                    importe = bono['precioPago']*cantidad;
+                    descripcion = "Inversion - Compra de Bonos";
+                    cbuSalida = cuenta['cbu'];
+                    // 000000001 es el cbu del banco (arbitrario)
+                    cbuDestino = 000000001;
+                    formValues = {id,fecha,importe,descripcion,cbuSalida,cbuDestino};
+                    jsonMovimiento = JSON.stringify(formValues);
+                    $.ajax({
+                        url: '/cuarentinistas/rest/movimientos',
+                        method: 'POST',
+			            data: jsonMovimiento,
+			            contentType: 'application/json',
+			            dataType: 'text/html',
+			            // async: false,
+                    });
                 },
                 error: function (data, status, XHRresponse) {
                     console.log(data);
