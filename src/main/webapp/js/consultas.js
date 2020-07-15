@@ -215,3 +215,46 @@ function verMovimientos(cbu) {
 		$("#item"+i).append("<td>"+importe+"</td>");
 	});
 };
+
+function mostrarInversiones() {
+        var cuentas = [];
+        var inversiones = [];
+        $.ajax({
+                    url: '/cuarentinistas/rest/cuentas/cliente/'+clienteid,
+                    async: false
+                }).done(function(data){
+                        $.each(data, function(i,item) {
+                            cuentas.push(item['cbu']);
+                    });
+                });
+        $('#transaction-container').hide();
+        $('#tabla').show();
+        $('#container-header').text('');
+	$('#container-header').append('<div class="mb-0"><p class="title is-4">Mis Inversiones</p></div>');
+        
+        $('#data-headers').text('');
+	$('#data-headers').append("<th>Bono</th>");
+	$('#data-headers').append("<th>Cantidad</th>");
+        $('#data-headers').append("<th>Fecha</th>");
+        
+        $('#data-rest').text('');
+        
+
+        for (i=0;i<cuentas.length; i++){
+            $.ajax({
+		url: '/cuarentinistas/rest/inversiones/cuenta/'+cuentas[i],
+		async: false
+            }).done(function(data){
+                inversiones = inversiones.concat(data);
+            });
+        }
+
+        $.each(inversiones, function(i, inversion) {
+                        $("#data-rest").append('<tr id="item'+i+'"></tr>');
+                        $("#item"+i).append("<td>"+inversion['bonoId']+"</td>");
+                        $("#item"+i).append("<td>"+inversion['cantidad']+"</td>");
+                        $("#item"+i).append("<td>"+printDate(inversion['fecha'])+"</td>");
+                    });
+};
+
+//TODO agrupar por tipo de bono-cuenta. agregar nombre bonos. retorno esperado

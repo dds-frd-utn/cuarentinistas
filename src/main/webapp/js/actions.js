@@ -18,7 +18,7 @@ $(document).ready(function(){
                   </p>
                   <ul class="menu-list">
                       <li><a id="cuentas" onclick="mostrarCuentas();">Mis Cuentas</a></li>
-                      <li><a>Mis Inversiones</a></li>
+                      <li><a id="listaInversiones" onclick="mostrarInversiones();">Mis Inversiones</a></li>
                   </ul>
                   <p class="menu-label">
                       Transacciones
@@ -76,7 +76,7 @@ function mostrarCuentas() {
                         $("#item"+i).append("<td>"+item['alias']+"</td>");
                         $("#item"+i).append("<td>"+item['cbu']+"</td>");
                         $("#item"+i).append("<td>"+consultarBalance(item['cbu'])+"</td>");
-						$("#item"+i).append("<td><button class='button is-primary is-fullwidth is-small' onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
+			$("#item"+i).append("<td><button class='button is-primary is-fullwidth is-small' onclick='verMovimientos(" + item['cbu'] + ")'>Ver</button></td>");
                     });
                 });
             };
