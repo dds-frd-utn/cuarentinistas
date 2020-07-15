@@ -38,7 +38,7 @@ function  realizarTransferencia() {
                 </div>
             <div class="field">
             <label class="label" for="importe">Importe</label>
-		<div class="control"><input class="input" type="number" name="importe" id="importe"></input></div>
+		<div class="control"><input class="input" type="number" min="0" name="importe" id="importe" value="0"></input></div>
 		</div>
 
 		<div class="level mt-4 pt-1">

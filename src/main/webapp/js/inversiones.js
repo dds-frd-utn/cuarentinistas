@@ -57,7 +57,7 @@ function realizarInversion() {
         <div class="field">
             <label class="label" for="cantidad">Cantidad</label>
             <div class="control">
-                <input class="input" type="number" name="cantidad" id="cantidad" value="0"></input>
+                <input class="input" type="number" min="0" name="cantidad" id="cantidad" value="0"></input>
             </div>
 		</div>
         <div class="level mt-4 pt-1">
