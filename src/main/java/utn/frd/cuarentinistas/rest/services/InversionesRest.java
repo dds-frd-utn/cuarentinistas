@@ -15,7 +15,7 @@ import utn.frd.cuarentinistas.entities.Inversiones;
 import utn.frd.cuarentinistas.sessions.InversionesFacade;
 
 
-@Path("/inversions")
+@Path("/inversiones")
 public class InversionesRest {
     @EJB
     private InversionesFacade ejbInversionesFacade;
