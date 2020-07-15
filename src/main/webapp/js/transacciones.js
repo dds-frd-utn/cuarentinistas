@@ -25,12 +25,12 @@ function  realizarTransferencia() {
                 <label class="label" for="cbuSalida">Cuenta Propia</label>
 		<div class="control">
                 <div class="select is-primary">
-                <select name="cbuSalida" id="cuenta" required>
+                <select name="cbuSalida" id="cuenta">
 			`+opciones+`
 		</select></div></div></div>
                 <div class="field">
                 <label class="label" for="cbuDestino">CBU Destino</label>
-		<div class="control"><input class="input" type="number" name="cbuDestino" id="cbuDestino" placeholder="400720010" required></input></div>
+		<div class="control"><input class="input" type="number" name="cbuDestino" id="cbuDestino" placeholder="400720010"></input></div>
                 </div>
             <div class="field">
             <label class="label" for="descripcion">Descripcion</label>
@@ -61,6 +61,7 @@ function  realizarTransferencia() {
         descripcion = transactionForm.querySelector('input[name="descripcion"]').value;
         importe = transactionForm.querySelector('input[name="importe"]').value;
 		fecha = new Date();
+		fecha = fecha.toISOString().split('.')[0] + "Z";
 		// A la base de datos del ort* no le gusta que no le manden un // IDEA:
 		// y si le mandas uno se lo pasa por el cul*
 		// asi que le mandamos este id para que nos acepte el request :)
@@ -98,7 +99,7 @@ function  realizarTransferencia() {
 				const mensaje = `
 				<article class="message is-danger is-fullwidth">
 					<div class="message-body">
-						Hubo un problema procesando la transaccion (Error `+data.status+`: `+data.statusText+`)
+						Asegurese de haber completado los campos correctamente (Error `+data.status+`)
 					</div>
 				</article>
 				`;
